@@ -1,9 +1,9 @@
 # Controlled Vote Collector
 
-[![Steam Workshop](https://img.shields.io/static/v1?message=workshop&logo=steam&labelColor=gray&color=blue&logoColor=white&label=steam%20)](https://steamcommunity.com/sharedfiles/filedetails/?id=<STEAMID>)
-[![Steam Subscriptions](https://img.shields.io/steam/subscriptions/<STEAMID>)](https://steamcommunity.com/sharedfiles/filedetails/?id=<STEAMID>)
-[![Steam Favorites](https://img.shields.io/steam/favorites/<STEAMID>)](https://steamcommunity.com/sharedfiles/filedetails/?id=<STEAMID>)
-[![Steam Update Date](https://img.shields.io/steam/update-date/<STEAMID>)](https://steamcommunity.com/sharedfiles/filedetails/?id=<STEAMID>)
+[![Steam Workshop](https://img.shields.io/static/v1?message=workshop&logo=steam&labelColor=gray&color=blue&logoColor=white&label=steam%20)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
+[![Steam Subscriptions](https://img.shields.io/steam/subscriptions/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
+[![Steam Favorites](https://img.shields.io/steam/favorites/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
+[![Steam Update Date](https://img.shields.io/steam/update-date/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector)](https://github.com/GenZmeY/KF2-ControlledVoteCollector/tags)
 [![GitHub](https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector)](LICENSE)
 
@@ -19,7 +19,7 @@ New vote collector with improvements and features.
 - early kick protection.  
 
 # Usage & Setup
-[See steam workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=<STEAMID>)
+[See steam workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
 
 # Build
 **Note:** If you want to build/test/brew/publish a mutator without git-bash and/or scripts, follow [these instructions](https://tripwireinteractive.atlassian.net/wiki/spaces/KF2SW/pages/26247172/KF2+Code+Modding+How-to) instead of what is described here.

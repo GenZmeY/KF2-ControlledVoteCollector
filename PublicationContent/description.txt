@@ -1,4 +1,4 @@
-[img]https://img.shields.io/static/v1?logo=GitHub&labelColor=gray&color=blue&logoColor=white&label=&message=Open Source[/img] [img]https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector[/img] [img]https://img.shields.io/steam/subscriptions/<STEAMID>[/img] [img]https://img.shields.io/steam/favorites/<STEAMID>[/img] [img]https://img.shields.io/steam/update-date/<STEAMID>[/img] [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/<STEAMID>][img]https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector[/img][/url]
+[img]https://img.shields.io/static/v1?logo=GitHub&labelColor=gray&color=blue&logoColor=white&label=&message=Open Source[/img] [img]https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector[/img] [img]https://img.shields.io/steam/subscriptions/2847465899[/img] [img]https://img.shields.io/steam/favorites/2847465899[/img] [img]https://img.shields.io/steam/update-date/2847465899[/img] [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2847465899][img]https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector[/img][/url]
 
 [h1]Description[/h1]
 New vote collector with improvements and features.
@@ -26,7 +26,7 @@ No. This mod is not whitelisted and will de-rank your server. Any XP gained will
 [b]DownloadManagers=OnlineSubsystemSteamworks.SteamWorkshopDownload[/b]
 ❗️ If there are several [b]DownloadManagers=[/b] then the line above should be the first ❗️
 [*]Add the following string to the [b][OnlineSubsystemSteamworks.KFWorkshopSteamworks][/b] section (create one if it doesn't exist):
-[b]ServerSubscribedWorkshopItems=<STEAMID>[/b]
+[b]ServerSubscribedWorkshopItems=2847465899[/b]
 [*]Start the server and wait until the mutator is downloading;
 [*]Add mutator to server start parameters: [b]?Mutator=CVC.CVCMut[/b] and restart the server.
 [/olist]
@@ -36,17 +36,17 @@ Config will be created at the first start.
 
 [b][CVC.MapStat][/b]
 [list]
-[*]Set [b]bEnable=True[/b] to start collecting maps stats. The following information is collected: number of full rounds on the map, total time (minutes), average time (minutes). Statistics are stored in the [b]KFMapStats.ini[/b].
+[*]Set [b]bEnable=True[/b] to start collecting maps stats. The following information is collected: number of full rounds on the map, total time (minutes), average time (minutes). Statistics are stored in the [b]KFMapStats.ini[/b]. To reset the statistics, delete [b]KFMapStats.ini[/b] and restart the server.
 [*]Set [b]SortPolicy[/b] to sort the list of statistics. Possible values:
 [list]
-[*]CounterAsc
-[*]CounterDesc
-[*]NameAsc
-[*]NameDesc
-[*]PlayTimeTotalAsc
-[*]PlayTimeTotalDesc
-[*]PlayTimeAvgAsc
-[*]PlayTimeAvgDesc
+[*][b]CounterAsc[/b]
+[*][b]CounterDesc[/b]
+[*][b]NameAsc[/b]
+[*][b]NameDesc[/b]
+[*][b]PlayTimeTotalAsc[/b]
+[*][b]PlayTimeTotalDesc[/b]
+[*][b]PlayTimeAvgAsc[/b]
+[*][b]PlayTimeAvgDesc[/b]
 [/list]
 [/list]
 
