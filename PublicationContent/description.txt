@@ -1,0 +1,121 @@
+[img]https://img.shields.io/static/v1?logo=GitHub&labelColor=gray&color=blue&logoColor=white&label=&message=Open Source[/img] [img]https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector[/img] [img]https://img.shields.io/steam/subscriptions/<STEAMID>[/img] [img]https://img.shields.io/steam/favorites/<STEAMID>[/img] [img]https://img.shields.io/steam/update-date/<STEAMID>[/img] [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/<STEAMID>][img]https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector[/img][/url]
+
+[h1]Description[/h1]
+New vote collector with improvements and features.
+
+[h1]Features[/h1]
+[list]
+[*]map statistics;
+[*]default/next map setting;
+[*]anonymous or public voting;
+[*]kick logging;
+[*]kick voting setup;
+[*]early kick protection.
+[/list]
+
+[i](it would be logical to separate these features into several mutators, but this is a bad idea for technical reasons)[/i]
+
+[h1]Whitelisted?[/h1]
+No. This mod is not whitelisted and will de-rank your server. Any XP gained will not be saved.
+
+[h1]Usage (server)[/h1]
+[b]Note:[/b] [i]If you don't understand what is written here, read the article [url=https://wiki.killingfloor2.com/index.php?title=Dedicated_Server_(Killing_Floor_2)][u]Dedicated Server (KF2 wiki)[/u][/url] before following these instructions.[/i]
+[olist]
+[*]Open your [b]PCServer-KFEngine.ini[/b] / [b]LinuxServer-KFEngine.ini[/b];
+[*]Find the [b][IpDrv.TcpNetDriver][/b] section and make sure that there is a line (add if not):
+[b]DownloadManagers=OnlineSubsystemSteamworks.SteamWorkshopDownload[/b]
+❗️ If there are several [b]DownloadManagers=[/b] then the line above should be the first ❗️
+[*]Add the following string to the [b][OnlineSubsystemSteamworks.KFWorkshopSteamworks][/b] section (create one if it doesn't exist):
+[b]ServerSubscribedWorkshopItems=<STEAMID>[/b]
+[*]Start the server and wait until the mutator is downloading;
+[*]Add mutator to server start parameters: [b]?Mutator=CVC.CVCMut[/b] and restart the server.
+[/olist]
+
+[h1]Setup (KFCVC.ini)[/h1]
+Config will be created at the first start.
+
+[b][CVC.MapStat][/b]
+[list]
+[*]Set [b]bEnable=True[/b] to start collecting maps stats. The following information is collected: number of full rounds on the map, total time (minutes), average time (minutes). Statistics are stored in the [b]KFMapStats.ini[/b].
+[*]Set [b]SortPolicy[/b] to sort the list of statistics. Possible values:
+[list]
+[*]CounterAsc
+[*]CounterDesc
+[*]NameAsc
+[*]NameDesc
+[*]PlayTimeTotalAsc
+[*]PlayTimeTotalDesc
+[*]PlayTimeAvgAsc
+[*]PlayTimeAvgDesc
+[/list]
+[/list]
+
+[b][CVC.MapVote][/b]
+This section sets the next map when no one voted for the map.
+[list]
+[*]Set [b]DefaultNextMap[/b] to choose which map will be next if no players voted for the next map. Possible values:
+[list]
+[*][b]Any[/b] - any map from the current map cycle;
+[*][b]Official[/b] - official map from the current map cycle;
+[*][b]Custom[/b] - custom map from the current map cycle;
+[*][b]<MapName>[/b] - specified map (for example: [b]KF-Nuked[/b]). If the specified map is not in the current map cycle, the next map from the cycle will be selected.
+[/list]
+[*]Set [b]bRandomizeNextMap[/b] to [b]True[/b] to randomize the next map (will be selected a random map that matches the [b]DefaultNextMap[/b] parameter).
+[/list]
+
+[b][CVC.SkipTraderVote][/b]
+[list]
+[*][b]bChatNotifications[/b] - set to [b]True[/b] to see player votes in chat;
+[*][b]PositiveColorHex[/b] - hex color for yes vote in chat;
+[*][b]NegativeColorHex[/b] - hex color for no vote in chat;
+[*][b]bHudNotifications[/b] - set to [b]True[/b] to see player votes in HUD;
+[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends.
+[/list]
+
+[b][CVC.PauseVote][/b]
+[list]
+[*][b]bChatNotifications[/b] - set to [b]True[/b] to see player votes in chat;
+[*][b]PositiveColorHex[/b] - hex color for yes vote in chat;
+[*][b]NegativeColorHex[/b] - hex color for no vote in chat;
+[*][b]bHudNotifications[/b] - set to [b]True[/b] to see player votes in HUD;
+[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends.
+[/list]
+
+[b][CVC.KickVote][/b]
+[list]
+[*][b]bChatNotifications[/b] - set to [b]True[/b] to see player votes in chat;
+[*][b]WarningColorHex[/b] - hex color for chat warnings;
+[*][b]PositiveColorHex[/b] - hex color for yes vote in chat;
+[*][b]NegativeColorHex[/b] - hex color for no vote in chat;
+[*][b]bHudNotifications[/b] - set to [b]True[/b] to see player votes in HUD;
+[*][b]bHudNotificationsOnlyOnTraderTime[/b] - set to [b]True[/b] to show HUD notification only during the trader time;
+[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends.
+[*][b]bLogKickVote[/b] - set to [b]True[/b] to log information about every kick vote;
+[*][b]MinVotingPlayersToStartKickVote[/b] - minimum number of voting players to start kick voting;
+[*][b]MaxKicks[/b] - maximum number of kicks per game.
+[/list]
+
+[b][CVC.KickProtected][/b]
+[list]
+[*]Use [b]PlayerID[/b] to set the list of players immune to kick. You can use UniqueID or SteamID;
+[*]Set [b]NotifyPlayerAboutKickAttempt[/b] to [b]True[/b] to let players on this list receive notifications of attempts to kick them.
+[/list]
+
+[b][CVC.StartWaveKickProtection][/b]
+In this section, the system for preventing early kicks is configured (especially for lazy ass admins like me who don't want to consider player complaints about this).
+[list]
+[*][b]Waves[/b] - the number of waves during which a new player has kick protection and cannot vote for a kick;
+[*][b]MinLevel[/b] - the minimum level that a player needs to have in order to receive protection from a kick after joining the server.
+[/list]
+
+[b]How start wave kick protection works:[/b]
+When a player joins a server, he is protected from a kick for the specified number of [b]Waves[/b]. This keeps the server from being taken over by players, and it also forces current players to play with the new player for at least a little bit before they can kick him. This solves most of the unfair kicks in the game.
+
+Along with receiving the kick protection, the new player loses the ability to vote for the kick. This eliminates the ability for new players to remove existing players using kick protection for impunity.
+
+When the player has played the specified number of [b]Waves[/b], he loses the kick protection and gets the opportunity to vote for the kick.
+
+The [b]MinLevel[/b] parameter specifies an exception to these rules, giving kick protection only to players above or equal the specified level. All players can vote to exclude players with an unsuitable level, regardless of whether they have played enough [b]Waves[/b] or not. This allows to remove low-level players without waiting for them to screw up in the game.
+
+[h1]Sources[/h1]
+[url=https://github.com/GenZmeY/KF2-ControlledVoteCollector]https://github.com/GenZmeY/KF2-ControlledVoteCollector[/url] [b](GNU GPLv3)[/b]
