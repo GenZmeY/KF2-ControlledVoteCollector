@@ -111,9 +111,9 @@ In this section, the system for preventing early kicks is configured (especially
 [b]How start wave kick protection works:[/b]
 When a player joins a server, he is protected from a kick for the specified number of [b]Waves[/b]. This keeps the server from being taken over by players, and it also forces current players to play with the new player for at least a little bit before they can kick him. This solves most of the unfair kicks in the game.
 
-Along with receiving the kick protection, the new player loses the ability to vote for the kick. This eliminates the ability for new players to remove existing players using kick protection for impunity.
+Along with receiving the kick protection, the new player loses the ability to start kick vote. This eliminates the ability for new players to remove existing players using kick protection for impunity.
 
-When the player has played the specified number of [b]Waves[/b], he loses the kick protection and gets the opportunity to vote for the kick.
+When the player has played the specified number of [b]Waves[/b], he loses the kick protection and gets the opportunity to start kick vote.
 
 The [b]MinLevel[/b] parameter specifies an exception to these rules, giving kick protection only to players above or equal the specified level. All players can vote to exclude players with an unsuitable level, regardless of whether they have played enough [b]Waves[/b] or not. This allows to remove low-level players without waiting for them to screw up in the game.
 

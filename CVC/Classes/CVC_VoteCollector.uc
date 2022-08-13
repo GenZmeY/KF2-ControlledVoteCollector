@@ -46,7 +46,6 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 {
 	local Array<KFPlayerReplicationInfo> KFPRIs;
 	local KFPlayerReplicationInfo KFPRI;
-	local KFPlayerController KFPC;
 	local KFGameInfo KFGI;
 	
 	`Log_Trace();
@@ -70,11 +69,11 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 		return;
 	}
 	
-	if (!CVC.PlayerCanKickVote(KFPC_Kicker, KFPC_Kickee))
+	if (!CVC.PlayerCanStartKickVote(KFPC_Kicker, KFPC_Kickee))
 	{
 		CVC.WriteToChatLocalized(
 			KFPC_Kicker,
-			CVC_PlayerCantVote,
+			CVC_PlayerCantStartKickVote,
 			CfgKickVote.default.WarningColorHex,
 			String(CfgStartWaveKickProtection.default.Waves));
 		return;
@@ -164,7 +163,7 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 		GetKFPRIArray(KFPRIs);
 		foreach KFPRIs(KFPRI)
 		{
-			KFPRI.ShowKickVote(PRI_Kickee, VoteTime, !(KFPRI == PRI_Kicker || KFPRI == PRI_Kickee || !CVC.PlayerCanKickVote(KFPlayerController(KFPRI.Owner))));
+			KFPRI.ShowKickVote(PRI_Kickee, VoteTime, !(KFPRI == PRI_Kicker || KFPRI == PRI_Kickee));
 		}
 		
 		if (CfgKickVote.default.bChatNotifications)
@@ -180,25 +179,7 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 				KFPC_Kickee,
 				CVC_KickVoteStartedForPlayer,
 				CfgKickVote.default.NegativeColorHex,
-				KickerName,
-				KickeeName);
-				
-			foreach KFPRIs(KFPRI)
-			{
-				if (KFPRI == PRI_Kickee)
-				{
-					continue;
-				}
-				KFPC = KFPlayerController(KFPRI.Owner);
-				if (!CVC.PlayerCanKickVote(KFPC))
-				{
-					CVC.WriteToChatLocalized(
-						KFPC,
-						CVC_PlayerCantVote,
-						CfgKickVote.default.WarningColorHex,
-						String(CfgStartWaveKickProtection.default.Waves));
-				}
-			}
+				KickerName);
 		}
 		else
 		{
@@ -260,7 +241,7 @@ private function int VotingPlayers(optional PlayerReplicationInfo KickeePRI, opt
 	foreach KFPRIs(KFPRI)
 	{
 		KFPC = KFPlayerController(KFPRI.Owner);
-		if (KFPC != None && CVC.PlayerCanKickVote(KFPC, KFPC_Kickee))
+		if (KFPC != None && KFPC != KFPC_Kickee)
 		{
 			VotingPlayersNum++;
 		}
@@ -569,7 +550,7 @@ private function LogKickVotes()
 	}
 	
 	`Log_Kick("Kicker:" @ LogVotePlayer(Kicker));
-	`Log_Kick("Kicked:" @ LogVotePlayer(Kickee) @ String(Kickee.Perk) @ String(Kickee.Level));
+	`Log_Kick("Kicked:" @ LogVotePlayer(Kickee));
 	
 	`Log_Kick("Yes voters:");
 	foreach Yes(KV) `Log_Kick(LogVotePlayer(KV));
@@ -584,7 +565,7 @@ private function String LogVotePlayer(S_KickVote KV)
 {
 	`Log_Trace();
 	
-	return KV.Name @ "(UniqueID:" @ KV.UniqueID $ (KV.SteamID == "" ? "" : (", SteamID:" @ KV.SteamID $ ", Profile:" @ "https://steamcommunity.com/profiles/" $ KV.SteamID)) $ ")";
+	return KV.Name @ "(UniqueID:" @ KV.UniqueID $ (KV.SteamID == "" ? "" : (", SteamID:" @ KV.SteamID $ ", Profile:" @ "https://steamcommunity.com/profiles/" $ KV.SteamID)) $ ")" @ "Perk:" @ Repl(String(KV.Perk), "KFPerk_", "", false) @ "Level:" @ String(KV.Level);
 }
 
 public reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI, bool bSkip)

@@ -224,14 +224,9 @@ private function bool PlayerHasRequiredLevel(KFPlayerController KFPC)
 	return (KFPRI.GetActivePerkLevel() >= CfgStartWaveKickProtection.default.MinLevel);
 }
 
-public function bool PlayerCanKickVote(KFPlayerController KFPC, optional KFPlayerController KFPC_Kickee)
+public function bool PlayerCanStartKickVote(KFPlayerController KFPC, KFPlayerController KFPC_Kickee)
 {
 	`Log_Trace();
-	
-	if (KFPC_Kickee == None)
-	{
-		KFPC_Kickee = KFPlayerController(KFGRI.VoteCollector.CurrentKickVote.PlayerPRI.Owner);
-	}
 	
 	if (KFPC_Kickee != None)
 	{
