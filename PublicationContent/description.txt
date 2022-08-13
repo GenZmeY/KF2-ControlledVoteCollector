@@ -104,7 +104,7 @@ This section sets the next map when no one voted for the map.
 [b][CVC.StartWaveKickProtection][/b]
 In this section, the system for preventing early kicks is configured (especially for lazy ass admins like me who don't want to consider player complaints about this).
 [list]
-[*][b]Waves[/b] - the number of waves during which a new player has kick protection and cannot vote for a kick;
+[*][b]Waves[/b] - the number of waves during which a new player has kick protection and cannot start kick vote;
 [*][b]MinLevel[/b] - the minimum level that a player needs to have in order to receive protection from a kick after joining the server.
 [/list]
 
