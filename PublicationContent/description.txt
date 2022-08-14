@@ -32,7 +32,14 @@ No. This mod is not whitelisted and will de-rank your server. Any XP gained will
 [/olist]
 
 [h1]Setup (KFCVC.ini)[/h1]
-Config will be created at the first start.
+Config will be created at the first start(*).
+
+[b](*)[/b] if for some reason your config is not created, create it manually with the following content:
+[code]
+[CVC.CVC]
+Version=0
+[code]
+Then start the server and check the file again - config content should be generated.
 
 [b][CVC.MapStat][/b]
 [list]
