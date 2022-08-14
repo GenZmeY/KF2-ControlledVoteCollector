@@ -32,14 +32,7 @@ No. This mod is not whitelisted and will de-rank your server. Any XP gained will
 [/olist]
 
 [h1]Setup (KFCVC.ini)[/h1]
-Config will be created at the first start(*).
-
-[b](*)[/b] if for some reason your config is not created, create it manually with the following content:
-[code]
-[CVC.CVC]
-Version=0
-[code]
-Then start the server and check the file again - config content should be generated.
+Config will be created at the first start[b]*[/b].
 
 [b][CVC.MapStat][/b]
 [list]
@@ -126,6 +119,14 @@ Along with receiving the kick protection, the new player loses the ability to st
 When the player has played the specified number of [b]Waves[/b], he loses the kick protection and gets the opportunity to start kick vote.
 
 The [b]MinLevel[/b] parameter specifies an exception to these rules, giving kick protection only to players above or equal the specified level. All players can vote to exclude players with an unsuitable level, regardless of whether they have played enough [b]Waves[/b] or not. This allows to remove low-level players without waiting for them to screw up in the game.
+
+[h1]Troubleshooting[/h1]
+[b](*)[/b] If your config is not created for some reason, create it manually with the following content:
+[b][AAL.AAL]
+Version=0
+[/b]
+
+Then start the server and check the file again - config content should be generated.
 
 [h1]Sources[/h1]
 [url=https://github.com/GenZmeY/KF2-ControlledVoteCollector]https://github.com/GenZmeY/KF2-ControlledVoteCollector[/url] [b](GNU GPLv3)[/b]
