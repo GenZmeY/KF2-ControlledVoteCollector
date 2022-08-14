@@ -122,7 +122,7 @@ The [b]MinLevel[/b] parameter specifies an exception to these rules, giving kick
 
 [h1]Troubleshooting[/h1]
 [b](*)[/b] If your config is not created for some reason, create it manually with the following content:
-[b][AAL.AAL]
+[b][CVC.CVC]
 Version=0
 [/b]
 
