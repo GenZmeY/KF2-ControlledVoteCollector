@@ -2,7 +2,7 @@ class CVC extends Info
 	dependson(CVC_LocalMessage)
 	config(CVC);
 
-const LatestVersion = 1;
+const LatestVersion = 2;
 
 const CfgKickProtected           = class'KickProtected';
 const CfgKickVote                = class'KickVote';
@@ -78,6 +78,8 @@ private function PreInit()
 	{
 		case `NO_CONFIG:
 			`Log_Info("Config created");
+			
+		case 1:
 
 		case MaxInt:
 			`Log_Info("Config updated to version"@LatestVersion);

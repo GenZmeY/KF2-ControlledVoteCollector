@@ -15,19 +15,17 @@ public event PreBeginPlay()
 	
 	foreach WorldInfo.DynamicActors(class'CVC', CVC)
 	{
-		`Log_Base("Found 'CVC'");
 		break;
 	}
 	
 	if (CVC == None)
 	{
-		`Log_Base("Spawn 'CVC'");
 		CVC = WorldInfo.Spawn(class'CVC');
 	}
 	
 	if (CVC == None)
 	{
-		`Log_Base("Can't Spawn 'CVC', Destroy...");
+		`Log_Base("FATAL: Can't Spawn 'CVC'");
 		SafeDestroy();
 	}
 }

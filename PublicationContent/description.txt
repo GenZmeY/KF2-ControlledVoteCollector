@@ -1,4 +1,4 @@
-[img]https://img.shields.io/static/v1?logo=GitHub&labelColor=gray&color=blue&logoColor=white&label=&message=Open Source[/img] [img]https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector[/img] [img]https://img.shields.io/steam/subscriptions/2847465899[/img] [img]https://img.shields.io/steam/favorites/2847465899[/img] [img]https://img.shields.io/steam/update-date/2847465899[/img] [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2847465899][img]https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector[/img][/url]
+[img]https://img.shields.io/static/v1?logo=GitHub&labelColor=gray&color=blue&logoColor=white&label=&message=Open Source[/img] [img]https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector[/img] [img]https://img.shields.io/steam/favorites/2847465899[/img] [img]https://img.shields.io/steam/update-date/2847465899[/img] [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2847465899][img]https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector[/img][/url]
 
 [h1]Description[/h1]
 New vote collector with improvements and features.
@@ -69,7 +69,8 @@ This section sets the next map when no one voted for the map.
 [*][b]PositiveColorHex[/b] - hex color for yes vote in chat;
 [*][b]NegativeColorHex[/b] - hex color for no vote in chat;
 [*][b]bHudNotifications[/b] - set to [b]True[/b] to see player votes in HUD;
-[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends.
+[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends;
+[*][b]VoteTime[/b] - time in seconds for voting (will be automatically reduced if it exceeds the trader's remaining time).
 [/list]
 
 [b][CVC.PauseVote][/b]
@@ -78,7 +79,8 @@ This section sets the next map when no one voted for the map.
 [*][b]PositiveColorHex[/b] - hex color for yes vote in chat;
 [*][b]NegativeColorHex[/b] - hex color for no vote in chat;
 [*][b]bHudNotifications[/b] - set to [b]True[/b] to see player votes in HUD;
-[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends.
+[*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends;
+[*][b]VoteTime[/b] - time in seconds for voting (will be automatically reduced if it exceeds the trader's remaining time).
 [/list]
 
 [b][CVC.KickVote][/b]
@@ -92,7 +94,8 @@ This section sets the next map when no one voted for the map.
 [*][b]DefferedClearHUD[/b] - HUD notification will remain on the screen for the specified number of seconds after voting ends.
 [*][b]bLogKickVote[/b] - set to [b]True[/b] to log information about every kick vote;
 [*][b]MinVotingPlayersToStartKickVote[/b] - minimum number of voting players to start kick voting;
-[*][b]MaxKicks[/b] - maximum number of kicks per game.
+[*][b]MaxKicks[/b] - maximum number of kicks per game;
+[*][b]VoteTime[/b] - time in seconds for voting.
 [/list]
 
 [b][CVC.KickProtected][/b]

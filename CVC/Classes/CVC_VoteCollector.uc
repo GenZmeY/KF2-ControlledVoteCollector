@@ -163,7 +163,7 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 		GetKFPRIArray(KFPRIs);
 		foreach KFPRIs(KFPRI)
 		{
-			KFPRI.ShowKickVote(PRI_Kickee, VoteTime, !(KFPRI == PRI_Kicker || KFPRI == PRI_Kickee));
+			KFPRI.ShowKickVote(PRI_Kickee, CfgKickVote.default.VoteTime, !(KFPRI == PRI_Kicker || KFPRI == PRI_Kickee));
 		}
 		
 		if (CfgKickVote.default.bChatNotifications)
@@ -197,7 +197,7 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 			AllowHudNotification = bTraderIsOpen;
 		}
 		
-		SetTimer(VoteTime, false, nameof(ConcludeVoteKick), Self);
+		SetTimer(CfgKickVote.default.VoteTime, false, nameof(ConcludeVoteKick), Self);
 		
 		RecieveVoteKick(PRI_Kicker, true);
 	}
@@ -382,7 +382,7 @@ public reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool 
 			{
 				CVC.BroadcastHUDLocalized(
 					CVC_KickVoteStartedHUD,
-					float(VoteTime),
+					float(CfgKickVote.default.VoteTime),
 					KickerName,
 					KickeeName,
 					YesVotesPlayers);
@@ -391,7 +391,7 @@ public reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool 
 			{
 				CVC.BroadcastHUDLocalized(
 					CVC_KickVoteReceivedHUD,
-					float(VoteTime),
+					float(CfgKickVote.default.VoteTime),
 					YesVotesPlayers,
 					NoVotesPlayers);
 			}
@@ -568,6 +568,17 @@ private function String LogVotePlayer(S_KickVote KV)
 	return KV.Name @ "(UniqueID:" @ KV.UniqueID $ (KV.SteamID == "" ? "" : (", SteamID:" @ KV.SteamID $ ", Profile:" @ "https://steamcommunity.com/profiles/" $ KV.SteamID)) $ ")" @ "Perk:" @ Repl(String(KV.Perk), "KFPerk_", "", false) @ "Level:" @ String(KV.Level);
 }
 
+public function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
+{
+	`Log_Trace();
+	
+	VoteTime = CfgSkipTraderVote.default.VoteTime;
+	
+	Super.ServerStartVoteSkipTrader(PRI);
+	
+	VoteTime = default.VoteTime;
+}
+
 public reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI, bool bSkip)
 {
 	local bool MustNotify;
@@ -592,7 +603,7 @@ public reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI,
 		{
 			CVC.BroadcastHUDLocalized(
 				CVC_VoteProgressHUD,
-				float(VoteTime),
+				float(CfgSkipTraderVote.default.VoteTime),
 				VotedPlayers(),
 				DidntVotedPlayers());
 		}
@@ -619,6 +630,17 @@ public reliable server function ConcludeVoteSkipTrader()
 	Super.ConcludeVoteSkipTrader();
 }
 
+public function ServerStartVotePauseGame(PlayerReplicationInfo PRI)
+{
+	`Log_Trace();
+	
+	VoteTime = CfgPauseVote.default.VoteTime;
+	
+	Super.ServerStartVotePauseGame(PRI);
+	
+	VoteTime = default.VoteTime;
+}
+
 public reliable server function ReceiveVotePauseGame(PlayerReplicationInfo PRI, bool bSkip)
 {
 	local bool MustNotify;
@@ -643,7 +665,7 @@ public reliable server function ReceiveVotePauseGame(PlayerReplicationInfo PRI, 
 		{
 			CVC.BroadcastHUDLocalized(
 				CVC_VoteProgressHUD,
-				float(VoteTime),
+				float(CfgPauseVote.default.VoteTime),
 				VotedPlayers(),
 				DidntVotedPlayers());
 		}

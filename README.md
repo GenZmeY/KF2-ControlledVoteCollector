@@ -1,7 +1,6 @@
 # Controlled Vote Collector
 
 [![Steam Workshop](https://img.shields.io/static/v1?message=workshop&logo=steam&labelColor=gray&color=blue&logoColor=white&label=steam%20)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
-[![Steam Subscriptions](https://img.shields.io/steam/subscriptions/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
 [![Steam Favorites](https://img.shields.io/steam/favorites/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
 [![Steam Update Date](https://img.shields.io/steam/update-date/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector)](https://github.com/GenZmeY/KF2-ControlledVoteCollector/tags)

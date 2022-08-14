@@ -7,6 +7,7 @@ var public config String NegativeColorHex;
 var public config bool   bChatNotifications;
 var public config bool   bHudNotifications;
 var public config float  DefferedClearHUD;
+var public config int    VoteTime;
 
 public static function InitConfig(int Version, int LatestVersion, E_LogLevel LogLevel)
 {
@@ -16,6 +17,9 @@ public static function InitConfig(int Version, int LatestVersion, E_LogLevel Log
 	{
 		case `NO_CONFIG:
 			ApplyDefault(LogLevel);
+			
+		case 1:
+			default.VoteTime = class'KFVoteCollector'.default.VoteTime;
 			
 		default: break;
 	}
@@ -47,6 +51,12 @@ public static function Load(E_LogLevel LogLevel)
 		`Log_Error("DefferedClearHUD" @ "(" $ default.DefferedClearHUD $ ")" @ "must be greater than 0");
 		default.DefferedClearHUD = 0.0f;
 	}
+	
+	if (default.VoteTime <= 0 || default.VoteTime > 255)
+	{
+		`Log_Error("VoteTime" @ "(" $ default.VoteTime $ ")" @ "must be in range 1-255");
+		default.VoteTime = class'KFVoteCollector'.default.VoteTime;
+	}
 }
 
 protected static function ApplyDefault(E_LogLevel LogLevel)
@@ -58,6 +68,7 @@ protected static function ApplyDefault(E_LogLevel LogLevel)
 	default.PositiveColorHex   = class'KFLocalMessage'.default.EventColor;
 	default.NegativeColorHex   = class'KFLocalMessage'.default.InteractionColor;
 	default.DefferedClearHUD   = 1.0f;
+	default.VoteTime           = class'KFVoteCollector'.default.VoteTime;
 }
 
 protected static function bool IsValidHexColor(String HexColor, E_LogLevel LogLevel)
