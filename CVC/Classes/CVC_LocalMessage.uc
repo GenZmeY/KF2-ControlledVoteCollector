@@ -28,18 +28,6 @@ var private localized String VotedPlayers;
 var const             String DidntVotePlayersDefault;
 var private localized String DidntVotePlayers;
 
-// TODO:
-/*
-Kick vote hud:
-start vote + only yes votes:
-header: <player vote for player>
-second line: yes votes
-
-pause and skip:
-first line: voted players
-second line: dont voted players
-*/
-
 enum E_CVC_LocalMessageType
 {
 	CVC_PlayerIsKickProtected,
