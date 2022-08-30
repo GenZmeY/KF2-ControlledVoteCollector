@@ -125,7 +125,7 @@ public static function String GetLocalizedString(
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.NoString);
 			
 		case CVC_VoteProgressHUD:
-			return (default.VotedPlayers != "" ? default.VotedPlayers : default.VotedPlayersDefault) @ String1 $ (String2 != "" ? ("\n" $ (default.DidntVotePlayers != "" ? default.DidntVotePlayers : default.DidntVotePlayersDefault) @ String2) : "");
+			return (default.DidntVotePlayers != "" ? default.DidntVotePlayers : default.DidntVotePlayersDefault) @ String2 $ (String1 != "" ? ("\n" $ (default.VotedPlayers != "" ? default.VotedPlayers : default.VotedPlayersDefault) @ String1) : "");
 	}
 	
 	return "";
