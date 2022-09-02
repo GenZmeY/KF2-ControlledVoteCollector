@@ -378,7 +378,7 @@ public function bool DestroyRepInfo(Controller C)
 	return false;
 }
 
-DefaultProperties
+defaultproperties
 {
 
 }

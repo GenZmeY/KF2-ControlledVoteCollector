@@ -64,7 +64,7 @@ static function IncMapStat(String Map, int PlayTime, String SortPolicy, E_LogLev
 	StaticSaveConfig();
 }
 
-DefaultProperties
+defaultproperties
 {
 	
 }

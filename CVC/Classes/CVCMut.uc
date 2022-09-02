@@ -54,7 +54,7 @@ public function NotifyLogout(Controller C)
 	CVC.NotifyLogout(C);
 }
 
-DefaultProperties
+defaultproperties
 {
 
 }
