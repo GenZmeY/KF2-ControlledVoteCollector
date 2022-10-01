@@ -16,7 +16,10 @@ New vote collector with improvements and features.
 [i](it would be logical to separate these features into several mutators, but this is a bad idea for technical reasons)[/i]
 
 [h1]Whitelisted?[/h1]
-No. This mod is not whitelisted and will de-rank your server. Any XP gained will not be saved.
+[b]No.[/b] But I really hope that it will be whitelisted.
+
+[b]⚠️ I submitted whitelist request here:[/b]
+https://forums.tripwireinteractive.com/index.php?threads/whitelisting-mods-and-mutators.120340/post-2353667
 
 [h1]Usage (server)[/h1]
 [b]Note:[/b] [i]If you don't understand what is written here, read the article [url=https://wiki.killingfloor2.com/index.php?title=Dedicated_Server_(Killing_Floor_2)][u]Dedicated Server (KF2 wiki)[/u][/url] before following these instructions.[/i]
