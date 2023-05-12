@@ -40,4 +40,4 @@ If you find a bug, go to the [issue page](https://github.com/GenZmeY/KF2-Control
 Describe what the bug looks like and how reproduce it.  
 
 ## License
-[GNU GPLv3](LICENSE)  
+[![license](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)](LICENSE)  
