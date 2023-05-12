@@ -25,7 +25,7 @@ var private Array<CVC_RepInfo> RepInfos;
 public simulated function bool SafeDestroy()
 {
 	`Log_Trace();
-	
+
 	return (bPendingDelete || bDeleteMe || Destroy());
 }
 
@@ -39,33 +39,33 @@ public event PreBeginPlay()
 		SafeDestroy();
 		return;
 	}
-	
+
 	Super.PreBeginPlay();
-	
+
 	PreInit();
 }
 
 public event PostBeginPlay()
 {
 	`Log_Trace();
-	
+
 	if (bPendingDelete || bDeleteMe) return;
-	
+
 	Super.PostBeginPlay();
-	
+
 	PostInit();
 }
 
 private function PreInit()
 {
 	`Log_Trace();
-	
+
 	if (Version == `NO_CONFIG)
 	{
 		LogLevel = LL_Info;
 		SaveConfig();
 	}
-	
+
 	CfgMapStat.static.InitConfig(Version, LatestVersion, LogLevel);
 	CfgMapVote.static.InitConfig(Version, LatestVersion, LogLevel);
 	CfgSkipTraderVote.static.InitConfig(Version, LatestVersion, LogLevel);
@@ -73,22 +73,22 @@ private function PreInit()
 	CfgKickVote.static.InitConfig(Version, LatestVersion, LogLevel);
 	CfgKickProtected.static.InitConfig(Version, LatestVersion, LogLevel);
 	CfgStartWaveKickProtection.static.InitConfig(Version, LatestVersion, LogLevel);
-	
+
 	switch (Version)
 	{
 		case `NO_CONFIG:
 			`Log_Info("Config created");
-			
+
 		case 1:
 
 		case MaxInt:
 			`Log_Info("Config updated to version"@LatestVersion);
 			break;
-			
+
 		case LatestVersion:
 			`Log_Info("Config is up-to-date");
 			break;
-			
+
 		default:
 			`Log_Warn("The config version is higher than the current version (are you using an old mutator?)");
 			`Log_Warn("Config version is" @ Version @ "but current version is" @ LatestVersion);
@@ -109,27 +109,27 @@ private function PreInit()
 		SaveConfig();
 	}
 	`Log_Base("LogLevel:" @ LogLevel);
-	
+
 	CfgKickVote.static.Load(LogLevel);
 	CfgSkipTraderVote.static.Load(LogLevel);
 	CfgPauseVote.static.Load(LogLevel);
 	CfgMapStat.static.Load(LogLevel);
 	CfgMapVote.static.Load(LogLevel);
 	CfgStartWaveKickProtection.static.Load(LogLevel);
-	
+
 	KickProtectedPlayers = CfgKickProtected.static.Load(LogLevel);
 }
 
 private function PostInit()
 {
 	`Log_Trace();
-	
+
 	if (WorldInfo == None || WorldInfo.Game == None)
 	{
 		SetTimer(1.0f, false, nameof(PostInit));
 		return;
 	}
-	
+
 	KFGI = KFGameInfo(WorldInfo.Game);
 	if (KFGI == None)
 	{
@@ -137,20 +137,20 @@ private function PostInit()
 		SafeDestroy();
 		return;
 	}
-	
+
 	KFGIS = KFGameInfo_Survival(KFGI);
 	if (KFGIS == None)
 	{
 		`Log_Warn("Unknown gamemode (" $ KFGI $ "), KickProtectionStartWaves disabled");
 		CfgStartWaveKickProtection.default.Waves = 0;
 	}
-	
+
 	if (KFGI.GameReplicationInfo == None)
 	{
 		SetTimer(1.0f, false, nameof(PostInit));
 		return;
 	}
-	
+
 	KFGRI = KFGameReplicationInfo(KFGI.GameReplicationInfo);
 	if (KFGRI == None)
 	{
@@ -158,10 +158,10 @@ private function PostInit()
 		SafeDestroy();
 		return;
 	}
-	
+
 	KFGRI.VoteCollectorClass = class'CVC_VoteCollector';
 	KFGRI.VoteCollector = new(KFGRI) KFGRI.VoteCollectorClass;
-	
+
 	if (KFGRI.VoteCollector == None)
 	{
 		`Log_Fatal("Can't replace VoteCollector!");
@@ -179,23 +179,23 @@ private function PostInit()
 public function bool PlayerIsKickProtected(PlayerReplicationInfo PRI)
 {
 	`Log_Trace();
-	
+
 	return (KickProtectedPlayers.Find('Uid', PRI.UniqueId.Uid) != INDEX_NONE);
 }
 
 public function bool PlayerIsStartWaveKickProtected(KFPlayerController KFPC)
 {
 	`Log_Trace();
-	
+
 	return (PlayerOnStartWave(KFPC) && PlayerHasRequiredLevel(KFPC));
 }
 
 private function bool PlayerOnStartWave(KFPlayerController KFPC)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	if (KFGIS != None && CfgStartWaveKickProtection.default.Waves != 0)
 	{
 		foreach RepInfos(RepInfo)
@@ -206,30 +206,30 @@ private function bool PlayerOnStartWave(KFPlayerController KFPC)
 			}
 		}
 	}
-	
+
 	return false;
 }
 
 private function bool PlayerHasRequiredLevel(KFPlayerController KFPC)
 {
 	local KFPlayerReplicationInfo KFPRI;
-	
+
 	`Log_Trace();
-	
+
 	KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
-	
+
 	if (KFPRI == None)
 	{
 		return true;
 	}
-	
+
 	return (KFPRI.GetActivePerkLevel() >= CfgStartWaveKickProtection.default.MinLevel);
 }
 
 public function bool PlayerCanStartKickVote(KFPlayerController KFPC, KFPlayerController KFPC_Kickee)
 {
 	`Log_Trace();
-	
+
 	if (KFPC_Kickee != None)
 	{
 		if (KFPC == KFPC_Kickee)
@@ -241,16 +241,16 @@ public function bool PlayerCanStartKickVote(KFPlayerController KFPC, KFPlayerCon
 			return true; // always can vote for players without req level
 		}
 	}
-	
+
 	return !PlayerOnStartWave(KFPC);
 }
 
 public function BroadcastChatLocalized(E_CVC_LocalMessageType LMT, optional String HexColor, optional KFPlayerController ExceptKFPC = None, optional String String1, optional String String2)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	foreach RepInfos(RepInfo)
 	{
 		if (RepInfo.GetKFPC() != ExceptKFPC)
@@ -263,9 +263,9 @@ public function BroadcastChatLocalized(E_CVC_LocalMessageType LMT, optional Stri
 public function BroadcastHUDLocalized(E_CVC_LocalMessageType LMT, optional float DisplayTime = 0.0f, optional String String1, optional String String2, optional String String3)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	foreach RepInfos(RepInfo)
 	{
 		if (RepInfo.GetKFPC() != None)
@@ -278,9 +278,9 @@ public function BroadcastHUDLocalized(E_CVC_LocalMessageType LMT, optional float
 public function BroadcastClearMessageHUD(optional float DefferedTime = 0.0f)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	foreach RepInfos(RepInfo)
 	{
 		if (RepInfo.GetKFPC() != None)
@@ -293,9 +293,9 @@ public function BroadcastClearMessageHUD(optional float DefferedTime = 0.0f)
 public function WriteToChatLocalized(KFPlayerController KFPC, E_CVC_LocalMessageType LMT, optional String HexColor, optional String String1, optional String String2)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	foreach RepInfos(RepInfo)
 	{
 		if (RepInfo.GetKFPC() == KFPC)
@@ -309,9 +309,9 @@ public function WriteToChatLocalized(KFPlayerController KFPC, E_CVC_LocalMessage
 public function WriteToHUDLocalized(KFPlayerController KFPC, E_CVC_LocalMessageType LMT, optional float DisplayTime = 0.0f, optional String String1, optional String String2, optional String String3)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	foreach RepInfos(RepInfo)
 	{
 		if (RepInfo.GetKFPC() == KFPC)
@@ -345,32 +345,32 @@ public function NotifyLogout(Controller C)
 public function bool CreateRepInfo(Controller C)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	if (C == None) return false;
-	
+
 	RepInfo = Spawn(class'CVC_RepInfo', C);
-	
+
 	if (RepInfo == None) return false;
-	
+
 	RepInfo.CVC = Self;
 	RepInfo.LogLevel = LogLevel;
 	RepInfo.StartWave = ((KFGIS != None) ? KFGIS.WaveNum : 0);
-	
+
 	RepInfos.AddItem(RepInfo);
-	
+
 	return true;
 }
 
 public function bool DestroyRepInfo(Controller C)
 {
 	local CVC_RepInfo RepInfo;
-	
+
 	`Log_Trace();
-	
+
 	if (C == None) return false;
-	
+
 	foreach RepInfos(RepInfo)
 	{
 		if (RepInfo.Owner == C)
@@ -380,7 +380,7 @@ public function bool DestroyRepInfo(Controller C)
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 

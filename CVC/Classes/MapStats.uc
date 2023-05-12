@@ -22,7 +22,7 @@ static delegate int PlayTimeAvgDesc   (MapStatEntry A, MapStatEntry B) { return 
 static function SortMapStat(String SortPolicy, E_LogLevel LogLevel)
 {
 	`Log_TraceStatic();
-	
+
 	switch (Locs(SortPolicy))
 	{
 		case "counterasc":        default.MapStat.Sort(CounterAsc);        break;
@@ -58,13 +58,13 @@ static function IncMapStat(String Map, int PlayTime, String SortPolicy, E_LogLev
 		default.MapStat[MapStatEntryIndex].PlayTimeTotal += PlayTime;
 		default.MapStat[MapStatEntryIndex].PlayTimeAvg = default.MapStat[MapStatEntryIndex].PlayTimeTotal / default.MapStat[MapStatEntryIndex].Counter;
 	}
-	
+
 	SortMapStat(SortPolicy, LogLevel);
-	
+
 	StaticSaveConfig();
 }
 
 defaultproperties
 {
-	
+
 }
