@@ -12,18 +12,18 @@ var public config int    VoteTime;
 public static function InitConfig(int Version, int LatestVersion, E_LogLevel LogLevel)
 {
 	`Log_TraceStatic();
-	
+
 	switch (Version)
 	{
 		case `NO_CONFIG:
 			ApplyDefault(LogLevel);
-			
+
 		case 1:
 			default.VoteTime = class'KFVoteCollector'.default.VoteTime;
-			
+
 		default: break;
 	}
-	
+
 	if (LatestVersion != Version)
 	{
 		StaticSaveConfig();
@@ -33,25 +33,25 @@ public static function InitConfig(int Version, int LatestVersion, E_LogLevel Log
 public static function Load(E_LogLevel LogLevel)
 {
 	`Log_TraceStatic();
-	
+
 	if (!IsValidHexColor(default.PositiveColorHex, LogLevel))
 	{
 		`Log_Error("PositiveColorHex" @ "(" $ default.PositiveColorHex $ ")" @ "is not valid hex color");
 		default.PositiveColorHex = class'KFLocalMessage'.default.EventColor;
 	}
-	
+
 	if (!IsValidHexColor(default.NegativeColorHex, LogLevel))
 	{
 		`Log_Error("NegativeColorHex" @ "(" $ default.NegativeColorHex $ ")" @ "is not valid hex color");
 		default.NegativeColorHex = class'KFLocalMessage'.default.InteractionColor;
 	}
-	
+
 	if (default.DefferedClearHUD < 0)
 	{
 		`Log_Error("DefferedClearHUD" @ "(" $ default.DefferedClearHUD $ ")" @ "must be greater than 0");
 		default.DefferedClearHUD = 0.0f;
 	}
-	
+
 	if (default.VoteTime <= 0 || default.VoteTime > 255)
 	{
 		`Log_Error("VoteTime" @ "(" $ default.VoteTime $ ")" @ "must be in range 1-255");
@@ -62,7 +62,7 @@ public static function Load(E_LogLevel LogLevel)
 protected static function ApplyDefault(E_LogLevel LogLevel)
 {
 	`Log_TraceStatic();
-	
+
 	default.bChatNotifications = true;
 	default.bHudNotifications  = true;
 	default.PositiveColorHex   = class'KFLocalMessage'.default.EventColor;
@@ -74,13 +74,13 @@ protected static function ApplyDefault(E_LogLevel LogLevel)
 protected static function bool IsValidHexColor(String HexColor, E_LogLevel LogLevel)
 {
 	local byte Index;
-	
+
 	`Log_TraceStatic();
-	
+
 	if (len(HexColor) != 6) return false;
-	
+
 	HexColor = Locs(HexColor);
-	
+
 	for (Index = 0; Index < 6; ++Index)
 	{
 		switch (Mid(HexColor, Index, 1))

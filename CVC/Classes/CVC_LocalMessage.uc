@@ -33,23 +33,23 @@ enum E_CVC_LocalMessageType
 	CVC_PlayerIsKickProtected,
 	CVC_PlayerIsStartWaveKickProtected,
 	CVC_PlayerCantStartKickVote,
-	
+
 	CVC_KickVoteNotEnoughPlayers,
 	CVC_KickVoteStarted,
 	CVC_KickVoteStartedForPlayer,
 	CVC_KickVoteNotStartedForPlayer,
-	
+
 	CVC_KickVoteYesReceived,
 	CVC_KickVoteNoReceived,
 	CVC_KickVoteStartedHUD,
 	CVC_KickVoteReceivedHUD,
-	
+
 	CVC_SkipVoteYesReceived,
 	CVC_SkipVoteNoReceived,
-	
+
 	CVC_PauseVoteYesReceived,
 	CVC_PauseVoteNoReceived,
-	
+
 	CVC_VoteProgressHUD,
 };
 
@@ -76,58 +76,58 @@ public static function String GetLocalizedString(
 	optional String String3)
 {
 	`Log_TraceStatic();
-	
+
 	switch (LMT)
 	{
-		case CVC_PlayerIsKickProtected: 
+		case CVC_PlayerIsKickProtected:
 			return ReplKickee(default.PlayerIsKickProtected != "" ? default.PlayerIsKickProtected : default.PlayerIsKickProtectedDefault, String1);
-			
+
 		case CVC_PlayerIsStartWaveKickProtected:
 			return ReplWaves(ReplKickee(default.PlayerIsStartWaveKickProtected != "" ? default.PlayerIsStartWaveKickProtected : default.PlayerIsStartWaveKickProtectedDefault, String1), String2);
-			
+
 		case CVC_PlayerCantStartKickVote:
 			return ReplWaves(default.PlayerCantStartKickVote != "" ? default.PlayerCantStartKickVote : default.PlayerCantStartKickVoteDefault, String1);
-			
+
 		case CVC_KickVoteNotEnoughPlayers:
 			return ReplWaves(default.KickVoteNotEnoughPlayers != "" ? default.KickVoteNotEnoughPlayers : default.KickVoteNotEnoughPlayersDefault, String1);
-			
+
 		case CVC_KickVoteYesReceived:
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.YesString);
-			
+
 		case CVC_KickVoteNoReceived:
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.NoString);
-			
+
 		case CVC_KickVoteStartedHUD:
 			return ReplKickee(ReplKicker((default.KickVoteStarted != "" ? default.KickVoteStarted : default.KickVoteStartedDefault), String1), String2) $ "\n" $ class'KFCommon_LocalizedStrings'.default.YesString $ ":" @ String3;
-		
+
 		case CVC_KickVoteReceivedHUD:
 			return class'KFCommon_LocalizedStrings'.default.YesString $ ":" @ String1 $ "\n" $ class'KFCommon_LocalizedStrings'.default.NoString $ ":" @ String2;
-		
+
 		case CVC_KickVoteStarted:
 			return ReplKickee(ReplKicker((default.KickVoteStarted != "" ? default.KickVoteStarted : default.KickVoteStartedDefault), String1), String2);
-		
+
 		case CVC_KickVoteStartedForPlayer:
 			return ReplKicker((default.KickVoteStartedForPlayer != "" ? default.KickVoteStartedForPlayer : default.KickVoteStartedForPlayerDefault), String1);
-		
+
 		case CVC_KickVoteNotStartedForPlayer:
 			return ReplKicker((default.KickVoteNotStartedForPlayer != "" ? default.KickVoteNotStartedForPlayer : default.KickVoteNotStartedForPlayerDefault), String1);
-			
+
 		case CVC_SkipVoteYesReceived:
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.YesString);
-		
+
 		case CVC_SkipVoteNoReceived:
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.NoString);
-			
+
 		case CVC_PauseVoteYesReceived:
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.YesString);
-		
+
 		case CVC_PauseVoteNoReceived:
 			return (String1 $ ":" @ class'KFCommon_LocalizedStrings'.default.NoString);
-			
+
 		case CVC_VoteProgressHUD:
 			return (default.DidntVotePlayers != "" ? default.DidntVotePlayers : default.DidntVotePlayersDefault) @ String2 $ (String1 != "" ? ("\n" $ (default.VotedPlayers != "" ? default.VotedPlayers : default.VotedPlayersDefault) @ String1) : "");
 	}
-	
+
 	return "";
 }
 
