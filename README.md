@@ -1,8 +1,9 @@
 # Controlled Vote Collector
 
 [![Steam Workshop](https://img.shields.io/static/v1?message=workshop&logo=steam&labelColor=gray&color=blue&logoColor=white&label=steam%20)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
+[![Steam Downloads](https://img.shields.io/steam/downloads/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2848836389)
 [![Steam Favorites](https://img.shields.io/steam/favorites/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
-[![Steam Update Date](https://img.shields.io/steam/update-date/2847465899)](https://steamcommunity.com/sharedfiles/filedetails/?id=2847465899)
+[![MegaLinter](https://github.com/GenZmeY/KF2-ControlledVoteCollector/actions/workflows/mega-linter.yml/badge.svg?branch=master)](https://github.com/GenZmeY/KF2-ControlledVoteCollector/actions/workflows/mega-linter.yml)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/GenZmeY/KF2-ControlledVoteCollector)](https://github.com/GenZmeY/KF2-ControlledVoteCollector/tags)
 [![GitHub](https://img.shields.io/github/license/GenZmeY/KF2-ControlledVoteCollector)](LICENSE)
 
