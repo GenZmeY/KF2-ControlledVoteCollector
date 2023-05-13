@@ -38,6 +38,7 @@ public reliable client function WriteToChat(String Message, optional String HexC
 
 	if (KFPC.MyGFxManager.PartyWidget != None && KFPC.MyGFxManager.PartyWidget.PartyChatWidget != None)
 	{
+		KFPC.MyGFxManager.PartyWidget.PartyChatWidget.SetVisible(true);
 		KFPC.MyGFxManager.PartyWidget.PartyChatWidget.AddChatMessage(Message, HexColor);
 	}
 
