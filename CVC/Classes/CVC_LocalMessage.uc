@@ -10,6 +10,9 @@ var private localized String PlayerIsStartWaveKickProtected;
 var const             String PlayerCantStartKickVoteDefault;
 var private localized String PlayerCantStartKickVote;
 
+var const             String PlayerPerkIsNotLoadedDefault;
+var private localized String PlayerPerkIsNotLoaded;
+
 var const             String KickVoteNotEnoughPlayersDefault;
 var private localized String KickVoteNotEnoughPlayers;
 
@@ -33,6 +36,7 @@ enum E_CVC_LocalMessageType
 	CVC_PlayerIsKickProtected,
 	CVC_PlayerIsStartWaveKickProtected,
 	CVC_PlayerCantStartKickVote,
+	CVC_PlayerPerkIsNotLoaded,
 
 	CVC_KickVoteNotEnoughPlayers,
 	CVC_KickVoteStarted,
@@ -88,6 +92,9 @@ public static function String GetLocalizedString(
 		case CVC_PlayerCantStartKickVote:
 			return ReplWaves(default.PlayerCantStartKickVote != "" ? default.PlayerCantStartKickVote : default.PlayerCantStartKickVoteDefault, String1);
 
+		case CVC_PlayerPerkIsNotLoaded:
+			return ReplKickee(default.PlayerPerkIsNotLoaded != "" ? default.PlayerPerkIsNotLoaded : default.PlayerPerkIsNotLoadedDefault, String1);
+
 		case CVC_KickVoteNotEnoughPlayers:
 			return ReplWaves(default.KickVoteNotEnoughPlayers != "" ? default.KickVoteNotEnoughPlayers : default.KickVoteNotEnoughPlayersDefault, String1);
 
@@ -136,6 +143,7 @@ defaultproperties
 	PlayerIsKickProtectedDefault          = "<kickee> is protected from kick"
 	PlayerIsStartWaveKickProtectedDefault = "You can't kick <kickee> right now. He can be kicked when he plays at least <waves> wave(s)"
 	PlayerCantStartKickVoteDefault        = "You can't start kick vote now. You can start kick vote when you play at least <waves> wave(s)"
+	PlayerPerkIsNotLoadedDefault          = "You can't kick a player who hasn't loaded yet (<kickee>)"
 	KickVoteNotEnoughPlayersDefault       = "Not enough players to start vote (only players who have played at least <waves> wave(s) can vote)"
 	KickVoteStartedDefault                = "<kicker> has started a vote to kick <kickee>"
 	KickVoteStartedForPlayerDefault       = "<kicker> started voting to kick you"

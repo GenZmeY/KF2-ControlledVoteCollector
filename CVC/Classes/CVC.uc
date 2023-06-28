@@ -183,6 +183,13 @@ public function bool PlayerIsKickProtected(PlayerReplicationInfo PRI)
 	return (KickProtectedPlayers.Find('Uid', PRI.UniqueId.Uid) != INDEX_NONE);
 }
 
+public function bool PlayerPerkLoaded(PlayerReplicationInfo PRI)
+{
+	`Log_Trace();
+
+	return (KFPlayerReplicationInfo(PRI) != None && KFPlayerReplicationInfo(PRI).CurrentPerkClass != None);
+}
+
 public function bool PlayerIsStartWaveKickProtected(KFPlayerController KFPC)
 {
 	`Log_Trace();
