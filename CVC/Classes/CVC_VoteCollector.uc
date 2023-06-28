@@ -92,6 +92,16 @@ public function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerRepl
 		return;
 	}
 
+	if (!CVC.PlayerPerkLoaded(PRI_Kickee))
+	{
+		CVC.WriteToChatLocalized(
+			KFPC_Kicker,
+			CVC_PlayerPerkIsNotLoaded,
+			CfgKickVote.default.WarningColorHex,
+			KickeeName);
+		return;
+	}
+
 	if (CVC.PlayerIsStartWaveKickProtected(KFPC_Kickee))
 	{
 		CVC.WriteToChatLocalized(
