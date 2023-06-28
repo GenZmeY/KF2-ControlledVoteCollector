@@ -37,6 +37,7 @@ var private String KickeeName;
 var private String YesVotesPlayers, NoVotesPlayers;
 
 var private bool AllowHudNotification;
+var private bool AllowSTPNotification; // SkipTrader and Pause
 
 replication
 {
@@ -646,6 +647,8 @@ public function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
 			KFPRI.ShowSkipTraderVote(PRI, CurrentVoteTime, !(KFPRI == PRI) && PRI.GetTeamNum() != 255);
 		}
 
+		AllowSTPNotification = KFPRIs.Length > 1;
+
 		KFGI.BroadcastLocalized(KFGI, class'KFLocalMessage', LMT_SkipTraderVoteStarted, CurrentSkipTraderVote.PlayerPRI);
 		SetTimer(CurrentVoteTime, false, nameof(ConcludeVoteSkipTrader), Self);
 		SetTimer(1, true, nameof(UpdateTimer), Self);
@@ -692,7 +695,7 @@ public reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI,
 
 	`Log_Trace();
 
-	MustNotify = (PlayersThatHaveVoted.Find(PRI) == INDEX_NONE);
+	MustNotify = (PlayersThatHaveVoted.Find(PRI) == INDEX_NONE && AllowSTPNotification);
 
 	Super.RecieveVoteSkipTrader(PRI, bSkip);
 
@@ -807,6 +810,8 @@ public function ServerStartVotePauseGame(PlayerReplicationInfo PRI)
 			KFPRI.ShowPauseGameVote(PRI, CurrentVoteTime, !(KFPRI == PRI));
 		}
 
+		AllowSTPNotification = KFPRIs.Length > 1;
+
 		KFGI.BroadcastLocalized(KFGI, class'KFLocalMessage', bIsEndlessPaused ? LMT_ResumeVoteStarted : LMT_PauseVoteStarted, CurrentPauseGameVote.PlayerPRI);
 		SetTimer(CurrentVoteTime, false, nameof(ConcludeVotePauseGame), Self);
 		SetTimer(1, true, nameof(UpdatePauseGameTimer), Self);
@@ -853,7 +858,7 @@ public reliable server function ReceiveVotePauseGame(PlayerReplicationInfo PRI, 
 
 	`Log_Trace();
 
-	MustNotify = (PlayersThatHaveVoted.Find(PRI) == INDEX_NONE);
+	MustNotify = (PlayersThatHaveVoted.Find(PRI) == INDEX_NONE && AllowSTPNotification);
 
 	Super.ReceiveVotePauseGame(PRI, bSkip);
 
@@ -1118,4 +1123,5 @@ public function int GetNextMap()
 defaultproperties
 {
 	AllowHudNotification = true;
+	AllowSTPNotification = true;
 }
