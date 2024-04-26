@@ -131,5 +131,8 @@ Version=0
 
 Then start the server and check the file again - config content should be generated.
 
+[b]Translators:[/b]
+[url=https://steamcommunity.com/profiles/76561199126205919]cheungfatzong[/url] - Traditional Chinese [CHT], Simplified Chinese [CHN].
+
 [h1]Sources[/h1]
 [url=https://github.com/GenZmeY/KF2-ControlledVoteCollector]https://github.com/GenZmeY/KF2-ControlledVoteCollector[/url] [b](GNU GPLv3)[/b]
